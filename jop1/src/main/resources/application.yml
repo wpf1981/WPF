@@ -1,0 +1,29 @@
+##这是第一步，编写配置文件
+#数据库配置
+spring:
+  datasource:
+#    url: jdbc:oracle:thin:@localhost:1521:orcl
+#    username: system
+#    password: wpf
+    url: jdbc:oracle:thin:@192.168.1.6:1521:combrain
+    username: combrain
+    password: combrain
+#    url: jdbc:oracle:thin:@192.168.1.160:1521:combrain
+#    username: combrain
+#    password: combrain
+    driver-class-name: oracle.jdbc.OracleDriver
+#jpa配置
+  jpa:
+#    hibernate:
+#      ddl-auto: update
+    show-sql: true
+#模板配置
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
+#    cache: false #关闭缓存实际环境中true
+
+#配置服务器端口
+server:
+  port: 8100

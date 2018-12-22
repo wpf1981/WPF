@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+    <title>购销合同1.0</title>
+    <link rel="stylesheet" th:href="@{webjars/bootstrap/4.1.3/css/bootstrap.min.css}" href="webjars/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{webjars/bootstrap/4.1.3/js/bootstrap.min.js}"  href="webjars/bootstrap/4.1.3/js/bootstrap.min.js">
+    <link rel="stylesheet" th:href="@{webjars/jquery/3.3.1-1/jquery.min.js}"  href="webjars/jquery/3.3.1-1/jquery.min.js">
+    <style type="text/css" media="print">
+        #an,#an1 { display: none; }
+
+    </style>
+
+    <style>
+        .table-bordered   tr , td , th {
+            border: 2px solid ; /* 整体表格边框 */
+        }
+    </style>
+
+</head>
+<body class="container">
+<br>
+<div id="an">
+    <div align="right">
+        <br>
+        <h5 style="color:#b6b8b2">WPF-自定义报表-1.0</h5>
+    </div>
+    <br>
+    <form class="form-horizontal "   th:action="@{/xsjl}"  method="get">
+        <div class="form-group">
+            <label  class="col-sm-2  control-label">销售单号</label>
+            <div >
+                <input type="text" class="form-control" name="ids"  placeholder="输入销售单号，如有多个用单号，用英文输入法‘，’分隔"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <input type="submit" value="查&emsp;询" class="btn btn-info" />
+                &emsp;&emsp;
+                <input type="reset" value="重&emsp;置" class="btn btn-info" />
+            </div>
+
+        </div>
+    </form>
+    <HR align=center color=#b6b8b2 SIZE=1>
+</div>
+<div align="right">
+    <br>
+    <h5 style="color:#b6b8b2">保定仲景药业有限公司</h5>
+</div>
+<br>
+<br/>
+<div align="center"><h1>购&emsp;销&emsp;合&emsp;同</h1></div>
+<br/>
+<div class="with:80%">
+    <div><h4>甲方：保定仲景药业有限公司&emsp;&emsp;乙方：[[${SJ.get(1).khmc}]]</h4></div>
+    <div><h4>&emsp;&emsp;&nbsp;为搞好药品流通，以求共同发展，维护双方的经济利益，依据《中华人民共和国合同法》、《药品管理法》规定，经双方协商达成如下协议。</h4></div>
+
+    <table class="table table-bordered"><!--table-hover-->
+        <thead>
+        <tr align="center">
+            <th width="50px">#</th>
+            <th width="200px">商品名称</th>
+            <th width="150px">规格</th>
+            <th>产地</th>
+            <th width="120px">批号</th>
+            <th width="60px">数量</th>
+            <th width="60px">单价</th>
+            <th width="60px">金额</th>
+        </tr>
+        </thead>
+        <tbody th:with="var=0">
+        <tr  th:each="user,userStat:${SJ}" >
+            <th scope="row" th:text="${userStat.count}">x</th>
+            <td th:text="${user.spmc}">neo</td>
+            <td th:text="${user.gg}">Otto</td>
+            <td th:text="${user.cd}">Otto</td>
+            <td th:text="${user.ph}">Otto</td>
+            <td th:text="${user.sl}">Otto</td>
+            <td th:text="${user.dj}">Otto</td>
+            <td th:text="${user.je}">Otto</td>
+
+        </tr>
+        <tr>
+            <th colspan="2" align="center">合&emsp;&emsp;计</th>
+            <td colspan="6" align="center" th:text="人民币+'&emsp;'+${je}+'&emsp;'+元">100000</td>
+        </tr>
+        <tr>
+            <td  colspan="2" align="center">合计大写</td>
+            <td  colspan="6" align="center" th:text="人民币+'&emsp;'+${dx}">壹拾万</td>
+        </tr>
+        </tbody>
+    </table>
+    <div><h4>一、时间、价格及质量要求<br/>
+        &emsp;&emsp;&nbsp;１．乙方______年__月__日至______年__月__日拟定从甲方采购药品，合同到期后甲方收回乙方购销合同，甲方凭收回的购销合同与乙方签定新合同。<br/>
+        &emsp;&emsp;２．甲方所出售的药品不得超过物价部门的最高规定价格，购销双方协商定价。<br/>
+        &emsp;&emsp;３．甲方向乙方所售药品必须符合国家颁布的药品标准，并在合同末一次性提供合同期所有药品增值税或普通发票。<br/>
+        &emsp;&emsp;４．甲、乙双方互相提供有效的资质证明并加盖单位的原印章。<br/>
+        &emsp;&emsp;二、提（交）货方式、验收何货款结算<br/>
+        &emsp;&emsp;１．提（交）货方式：实行自提货方式，乙方自备交通工具，即购即提。实行送货方式：甲方按商拟得时间送往乙方接货地点。<br/>
+        &emsp;&emsp;２．验收：自提药品当场验收；送货药品货到验收。<br/>
+        &emsp;&emsp;３．货款方式：<br/>
+        &emsp;&emsp;四、违约责任：<br/>
+        &emsp;&emsp;１．甲方向乙方销售药品,因质量问题被罚款，乙方凭当地省或市药检所出具检验报告、罚款收据、罚款说明，甲方负全部责任。<br/>
+        &emsp;&emsp;２．如因乙方储存不当及运输原因造成药品质量问题，责任由乙方全部承担。<br/>
+        &emsp;&emsp;五．其他事项：<br/>
+        &emsp;&emsp;１．甲乙双方的任何一方由于不可抗拒力量造成不能履行合同时，应及时通知对方不能履行合同的原因理由。<br/>
+        &emsp;&emsp;２．甲乙双方在履行本合同时，如发生争议由双方协商解决。<br/>
+        &emsp;&emsp;３．本合同由双方法人代表授权的委托人签字。<br/>
+        &emsp;&emsp;４．本合同一式两份，双方各执一份，双方签字盖章后生效。<br/>
+        &emsp;&emsp;<br/>
+        &emsp;&emsp;甲方（单位盖章）： &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;乙方（单位盖章）： <br/>
+        &emsp;&emsp;<br/>
+        &emsp;&emsp;&emsp;&emsp;被委托人签字： &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;被委托人签字： <br/>
+        &emsp;&emsp;&emsp;&emsp;&emsp;法定代表人： &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;法定代表人： <br/>
+    </h4></div>
+    <div id="an1" align="center">
+        <br>
+        <br>
+        <HR align=center color=#b6b8b2 SIZE=1>
+        <br>
+        <h6 style="color:#b6b8b2">版权所有，未经允许不得用于其他商业用途，违者必究！@2018-12-19</h6>
+        <br>
+    </div>
+
+</body>
+</html>

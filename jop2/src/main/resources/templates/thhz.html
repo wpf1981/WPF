@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>退货原因汇总报表1.0</title>
+    <link rel="stylesheet" th:href="@{webjars/bootstrap/4.1.3/css/bootstrap.min.css}" href="webjars/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{webjars/bootstrap/4.1.3/js/bootstrap.min.js}"  href="webjars/bootstrap/4.1.3/js/bootstrap.min.js">
+    <link rel="stylesheet" th:href="@{webjars/jquery/3.3.1-1/jquery.min.js}"  href="webjars/jquery/3.3.1-1/jquery.min.js">
+
+    <style type="text/css" media="print">
+        #an { display: none; }
+    </style>
+</head>
+<body class="container" >
+<div id="an">
+    <div align="right">
+        <br>
+        <h5 style="color:#b6b8b2">WPF-自定义报表-1.0</h5>
+    </div>
+    <br>
+    <form class="form-horizontal "   th:action="@{/thhz}"  method="get">
+        <div class="form-group">
+            <label  class="col-sm-2  control-label">退货年月</label>
+            <div >
+                <input type="text" class="form-control" name="thrq"  placeholder="年份-月份"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <input type="submit" value="查&emsp;询" class="btn btn-info" />
+                &emsp;&emsp;
+                <input type="reset" value="重&emsp;置" class="btn btn-info" />
+            </div>
+
+        </div>
+    </form>
+    <HR align=center color=#b6b8b2 SIZE=1>
+</div>
+<div align="right">
+    <h5 style="color:#b6b8b2">保定仲景药业有限公司</h5>
+</div>
+<br/>
+<div align="center"><h2>销售退货原因汇总</h2></div>
+<br/><div align="right"><h4>退货日期:[[${sj.get(0).thrq}]]</h4></div>
+<br/>
+<div class="with:80%">
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>序号</th>
+            <th>退货时间</th>
+            <th>退货原因</th>
+            <th>退货次数</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr  th:each="sj : ${sj}">
+            <th scope="row" th:text="${sjStat.count}">1</th>
+            <td th:text="${sj.thrq}">neo</td>
+            <td th:text="${sj.thyy}">Otto</td>
+            <td th:text="${sj.zs}">6</td>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+    <br>
+    <div align="right">
+        <!--setInterval实时显示时间-->
+        <p id="time1" style="color: blueviolet;"></p>
+        <div><script>
+            function mytime(){
+                var a = new Date();
+                var b = a.toLocaleTimeString();
+                var c = a.toLocaleDateString();
+                document.getElementById("time1").innerHTML = c;
+            }
+            setInterval(function() {mytime()},1000);
+        </script></div>
+        <br>
+        <h5 style="color:#8f918b">WPF-自定义报表-1.0</h5>
+    </div>
+
+</div>
+</body>
+</html>
