@@ -10,6 +10,11 @@
     <style type="text/css" media="print">
         #an { display: none; }
     </style>
+    <!--<style>-->
+        <!--.table-bordered > tfoot > tr > td{-->
+            <!--border:1px solid #000 !important;//重点在这里-->
+        <!--}-->
+    <!--</style>-->
 </head>
 <body class="container" >
 <div id="an">
@@ -41,21 +46,31 @@
 </div>
 <br/>
 <div align="center"><h2>销售退货原因汇总</h2></div>
-<br/><div align="right"><h4>退货日期:[[${sj.get(0).thrq}]]</h4></div>
 <br/>
 <div class="with:80%">
-    <table class="table table-bordered">
+
+    <table class="table">
+        <style>
+            .table-bordered   th,tr , td {
+                border: 1px solid #1a1a1a; /* 整体表格边框 */
+            }
+        </style>
+
         <thead>
+
+        <tr >
+            <td colspan="4" ><h4 align="right">退货日期:[[${sj.get(0).thrq}]]</h4></td>
+        </tr>
         <tr>
-            <th>序号</th>
-            <th>退货时间</th>
-            <th>退货原因</th>
-            <th>退货次数</th>
+            <td><h4>序号</h4></td>
+            <td><h4>退货时间</h4></td>
+            <td><h4>退货原因</h4></td>
+            <td><h4>退货次数</h4></td>
         </tr>
         </thead>
         <tbody>
         <tr  th:each="sj : ${sj}">
-            <th scope="row" th:text="${sjStat.count}">1</th>
+            <td width="80px" scope="row" th:text="${sjStat.count}">1</td>
             <td th:text="${sj.thrq}">neo</td>
             <td th:text="${sj.thyy}">Otto</td>
             <td th:text="${sj.zs}">6</td>
@@ -65,17 +80,7 @@
     <br>
     <br>
     <div align="right">
-        <!--setInterval实时显示时间-->
-        <p id="time1" style="color: blueviolet;"></p>
-        <div><script>
-            function mytime(){
-                var a = new Date();
-                var b = a.toLocaleTimeString();
-                var c = a.toLocaleDateString();
-                document.getElementById("time1").innerHTML = c;
-            }
-            setInterval(function() {mytime()},1000);
-        </script></div>
+        <br>
         <br>
         <h5 style="color:#8f918b">WPF-自定义报表-1.0</h5>
     </div>
