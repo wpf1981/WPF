@@ -2,22 +2,17 @@
 #数据库配置
 spring:
   datasource:
-#    url: jdbc:oracle:thin:@localhost:1521:orcl
-#    username: system
-#    password: wpf
-    url: jdbc:oracle:thin:@192.168.1.6:1521:combrain
-    username: combrain
-    password: combrain
-#    url: jdbc:oracle:thin:@192.168.1.160:1521:combrain
-#    username: combrain
-#    password: combrain
+    url: jdbc:oracle:thin:@192.168.1.125:1521:momo
+    username: yyb
+    password: redrose
     driver-class-name: oracle.jdbc.OracleDriver
 #jpa配置
   jpa:
-#    hibernate:
-#      ddl-auto: update
+    hibernate:
+      ddl-auto: update
     show-sql: true
-#模板配置
+    open-in-view: false
+  #模板配置
   thymeleaf:
     cache: false
     prefix: classpath:/templates/

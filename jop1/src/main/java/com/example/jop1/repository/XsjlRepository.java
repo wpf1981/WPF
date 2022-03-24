@@ -23,10 +23,10 @@ public interface XsjlRepository extends JpaRepository<Xsjl,String> {
     List<Xsjl> findByXsdidIn(List<String> ss);
 
     //自定义查询语句 ？1为传入参数
-    @Query(value = "SELECT SUM(je) FROM W_XSJL WHERE XSDID IN ?1",nativeQuery = true)
+    @Query(value = "SELECT SUM(SALE_MNY) FROM SD_SALELOGD WHERE SALELOG_NO IN ?1",nativeQuery = true)
     String sumByJeIn(List<String> list);
 
-    @Query(value = "SELECT NUM2RMB(SUM(je)) DXJE,SUM(je) XXJE FROM W_XSJL WHERE XSDID IN ?1",nativeQuery = true)
+    @Query(value = "SELECT SUM(SALE_MNY) DXJE,SUM(SALE_MNY) XXJE FROM SD_SALELOGD WHERE SALELOG_NO IN ?1",nativeQuery = true)
     String rmbZh(List<String> list);
 
 }

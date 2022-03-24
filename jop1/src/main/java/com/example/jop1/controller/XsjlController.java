@@ -32,7 +32,10 @@ public class XsjlController {
         return "index";
     }
 
-
+    @RequestMapping("/a")
+    public String page2(){
+        return "xsjl1";
+    }
 
     @RequestMapping("/xsjl")
 //    @ResponseBody
